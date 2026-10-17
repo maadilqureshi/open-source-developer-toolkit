@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Browser-based developer utilities for JSON, Base64, slugs, text statistics and timestamps.">
+<title>Developer Toolkit · Browser Utilities</title>
+<link rel="stylesheet" href="styles.css"><script type="module" src="src/app.js"></script>
+</head>
+<body><main class="shell">
+<header><p class="eyebrow">Open source • Runs locally in your browser</p><h1>Developer Toolkit</h1><p class="intro">Everyday text utilities in a privacy-friendly workspace. Inputs are processed locally.</p></header>
+<form id="tool-form" class="workspace">
+<label for="tool">Choose a tool</label>
+<select id="tool" name="tool">
+<option value="json-pretty">JSON formatter</option><option value="json-minify">JSON minifier</option>
+<option value="base64-encode">Base64 encode (UTF-8)</option><option value="base64-decode">Base64 decode (UTF-8)</option>
+<option value="slug">URL slug generator</option><option value="count">Text statistics</option>
+<option value="timestamp">Date to ISO timestamp</option>
+</select>
+<div class="editors">
+<div><label for="input">Input</label><textarea id="input" spellcheck="false" placeholder='Try {"hello":"world"}'></textarea></div>
+<div><label for="output">Output</label><textarea id="output" readonly spellcheck="false" aria-describedby="status" placeholder="Result appears here"></textarea></div>
+</div><div class="actions"><button type="submit" class="primary">Run tool</button><button type="button" id="copy">Copy output</button><button type="button" id="clear">Clear</button></div>
+<p id="status" role="status" aria-live="polite">Ready.</p></form>
+<footer>Built with HTML, CSS, and JavaScript. No account required.</footer>
+</main></body></html>

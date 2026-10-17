@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {formatJSON,minifyJSON,encodeBase64,decodeBase64,slugify,countText,formatTimestamp} from '../src/utils.js';
+test('formats JSON',()=>assert.equal(formatJSON('{"x":1}'),'{\n  "x": 1\n}'));
+test('minifies JSON',()=>assert.equal(minifyJSON('{ "x": 1 }'),'{"x":1}'));
+test('rejects invalid JSON',()=>assert.throws(()=>formatJSON('broken'),SyntaxError));
+test('Base64 handles Unicode',()=>assert.equal(decodeBase64(encodeBase64('Hello 🌍 اردو')),'Hello 🌍 اردو'));
+test('invalid Base64 rejected',()=>assert.throws(()=>decodeBase64('%%%')));
+test('slugifies text',()=>assert.equal(slugify('  Café & Tea! '),'cafe-tea'));
+test('counts text',()=>assert.deepEqual(countText('hello world\nagain'),{characters:17,words:3,lines:2}));
+test('blank text has zero words',()=>assert.equal(countText('   ').words,0));
+test('ISO timestamp',()=>assert.equal(formatTimestamp('2026-01-01'),'2026-01-01T00:00:00.000Z'));
+test('invalid timestamp',()=>assert.throws(()=>formatTimestamp('not a date')));
